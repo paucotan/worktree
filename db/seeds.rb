@@ -1,3 +1,10 @@
+puts "Cleaning database"
+User.destroy_all
+puts "desroyed users"
+Space.destroy_all
+Booking.destroy_all
+
+
 puts "Cleaned database, all good!"
 
 puts "Creating users..."
@@ -16,7 +23,7 @@ spaces = [
     price_per_day: 100,
     capacity: 10,
     availability_status: true,
-    user: User.first
+    owner: User.first
   },
   {
     name: "Creative Hub",
@@ -26,7 +33,7 @@ spaces = [
     price_per_day: 130,
     capacity: 8,
     availability_status: true,
-    user: User.first
+    owner: User.first
   },
   {
     name: "Quiet Work Café",
@@ -36,7 +43,7 @@ spaces = [
     price_per_day: 90,
     capacity: 6,
     availability_status: false,
-    user: User.first
+    owner: User.first
   },
   {
     name: "Tech Startup Hub",
@@ -46,7 +53,7 @@ spaces = [
     price_per_day: 120,
     capacity: 12,
     availability_status: true,
-    user: User.first
+    owner: User.first
   }
 ]
 
@@ -59,7 +66,7 @@ puts "Spaces created: #{Space.count}"
 puts "Creating bookings..."
 
 Booking.create!(
-  user: User.last,
+  renter: User.last,
   space: Space.first,
   start_date: Date.today + 1,
   end_date: Date.today + 3,
@@ -67,7 +74,7 @@ Booking.create!(
 )
 
 Booking.create!(
-  user: User.last,
+  renter: User.last,
   space: Space.last,
   start_date: Date.today + 5,
   end_date: Date.today + 7,
@@ -75,4 +82,3 @@ Booking.create!(
 )
 
 puts "Bookings created: #{Booking.count}"
-

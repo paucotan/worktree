@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+User.create!(
+  email: "test@example.com",
+  password: "password"
+)
+Space.create!(
+  name: "Modern Co-Working Space",
+  location: "123 Innovation Drive, Vancouver, BC",
+  price: 75,
+  description: "A state-of-the-art workspace with high-speed internet and coffee.",
+  user: User.first # Only needed if spaces require a user
+)
+
+Space.create!(
+  name: "Downtown Shared Office",
+  location: "456 Business St, Vancouver, BC",
+  price: 60,
+  description: "Perfect for freelancers and small teams looking for a professional setting.",
+  user: User.first
+)

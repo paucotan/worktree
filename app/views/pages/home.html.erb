@@ -1,2 +1,9 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<h1>Welcome to WorkTree</h1>
+<p>Find and book the perfect coworking space!</p>
+
+<% if user_signed_in? %>
+  <p><%= link_to "Go to Dashboard", user_dashboard_path, class: "btn btn-primary" %></p>
+<% else %>
+  <p><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %> or
+    <%= link_to "Log In", new_user_session_path, class: "btn btn-secondary" %></p>
+<% end %>

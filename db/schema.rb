@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_04_133610) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_04_145933) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,11 +19,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_133610) do
     t.date "end_date"
     t.string "status"
     t.bigint "space_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "renter_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["renter_id"], name: "index_bookings_on_renter_id"
     t.index ["space_id"], name: "index_bookings_on_space_id"
-    t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
   create_table "spaces", force: :cascade do |t|
@@ -34,10 +34,10 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_133610) do
     t.integer "price_per_day"
     t.integer "capacity"
     t.boolean "availability_status"
-    t.bigint "user_id", null: false
+    t.bigint "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_spaces_on_user_id"
+    t.index ["owner_id"], name: "index_spaces_on_owner_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,6 +54,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_04_133610) do
   end
 
   add_foreign_key "bookings", "spaces"
-  add_foreign_key "bookings", "users"
-  add_foreign_key "spaces", "users"
+  add_foreign_key "bookings", "users", column: "renter_id"
+  add_foreign_key "spaces", "users", column: "owner_id"
 end

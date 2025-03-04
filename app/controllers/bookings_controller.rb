@@ -13,17 +13,13 @@ class BookingsController < ApplicationController
     end
   end
 
-  def update
+  def update; end
 
-  end
+  def destroy; end
 
-  def destroy
-
-  end
   private
 
   def booking_params
     params.require(:booking).permit(:start_date, :end_date, :status, :space_id, :user_id)
   end
-
 end

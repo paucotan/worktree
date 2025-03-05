@@ -1,8 +1,17 @@
 class Booking < ApplicationRecord
   validates :start_date, presence: true
   validates :end_date, presence: true
-  # validate :end_date_after_start_date
+  validates :status, presence: true
+  validate :start_date_is_in_future
   belongs_to :space, dependent: :destroy
   belongs_to :renter, class_name: "User"
   has_one :owner, through: :space
+
+  private
+
+  def start_date_is_in_future
+    if start_date < Date.today
+      errors.add(:start_date, "must be in the future")
+    end
+  end
 end

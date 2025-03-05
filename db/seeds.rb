@@ -8,8 +8,8 @@ Booking.destroy_all
 puts "Cleaned database, all good!"
 
 puts "Creating users..."
-User.create!(email: "owner@example.com", password: "password123", role: "owner")
-User.create!(email: "renter@example.com", password: "password123", role: "renter")
+@owner = User.create!(email: "owner@example.com", password: "password123", role: "owner")
+@renter = User.create!(email: "renter@example.com", password: "password123", role: "renter")
 puts "Users created: #{User.count}"
 
 puts "Creating spaces..."
@@ -23,7 +23,7 @@ spaces = [
     price_per_day: 100,
     capacity: 10,
     availability_status: true,
-    owner: User.first
+    owner: @owner
   },
   {
     name: "Creative Hub",
@@ -33,7 +33,7 @@ spaces = [
     price_per_day: 130,
     capacity: 8,
     availability_status: true,
-    owner: User.first
+    owner: @owner
   },
   {
     name: "Quiet Work Café",
@@ -43,7 +43,7 @@ spaces = [
     price_per_day: 90,
     capacity: 6,
     availability_status: false,
-    owner: User.first
+    owner: @owner
   },
   {
     name: "Tech Startup Hub",
@@ -53,7 +53,7 @@ spaces = [
     price_per_day: 120,
     capacity: 12,
     availability_status: true,
-    owner: User.first
+    owner: @owner
   }
 ]
 

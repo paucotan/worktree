@@ -4,7 +4,7 @@ class Booking < ApplicationRecord
   validates :status, presence: true
   validate :start_date_is_in_future
   belongs_to :space, dependent: :destroy
-  belongs_to :renter, class_name: "User"
+  belongs_to :renter, class_name: "User", foreign_key: :renter_id
   has_one :owner, through: :space
 
   private

@@ -1,4 +1,42 @@
 <h1>Dashboard</h1>
 <p>Welcome, <%= current_user.email %>!</p>
 
-<p>The dashboard is under construction. 🚧</p>
+
+<div class="container">
+  <% if current_user.owner? %>
+    <div class="cards-spaces">
+      <h2>Your Spaces</h2>
+      <% current_user.spaces.each do |space| %>
+        <div class="card-space">
+          <%# <%= space.image_url %>
+          <h3><%= space.name %></h3>
+          <p><%= space.location %></p>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="bookings">
+      <h2>Your Bookings</h2>
+      <% current_user.bookings.each do |booking| %>
+        <div class="card-booking">
+          <p><%= booking.space.name %></p>
+          <p><%= booking.renter.email %></p>
+          <p><%= booking.status %></p>
+        </div>
+      <% end %>
+    </div>
+
+  <% elsif %>
+    <div class="bookings">
+      <h2>Your Bookings</h2>
+      <% current_user.bookings.each do |booking| %>
+        <div class="card-booking">
+          <p><%= booking.space.name %></p>
+          <p><%= booking.status %></p>
+        </div>
+      <% end %>
+    </div>
+
+  <% end %>
+</div>

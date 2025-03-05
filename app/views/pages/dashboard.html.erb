@@ -7,10 +7,12 @@
     <div class="cards-spaces">
       <h2>Your Spaces</h2>
       <% current_user.spaces.each do |space| %>
-        <div class="card-space">
-          <%# <%= space.image_url %>
-          <h3><%= space.name %></h3>
-          <p><%= space.location %></p>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=720&im_format=avif" alt="Space image" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><%= space.name %></h5>
+            <p class="card-text"><%= space.location %></p>
+          </div>
         </div>
       <% end %>
     </div>
@@ -19,10 +21,13 @@
     <div class="bookings">
       <h2>Your Bookings</h2>
       <% current_user.bookings.each do |booking| %>
-        <div class="card-booking">
-          <p><%= booking.space.name %></p>
-          <p><%= booking.renter.email %></p>
-          <p><%= booking.status %></p>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=720&im_format=avif" alt="Space image" >
+          <div class="card-body">
+            <h5 class="card-title"><%= booking.space.name %></h5>
+            <p class="card-text"><%= booking.renter.email %></p>
+            <p class="card-text"><%= booking.status %></p>
+          </div>
         </div>
       <% end %>
     </div>
@@ -31,9 +36,12 @@
     <div class="bookings">
       <h2>Your Bookings</h2>
       <% current_user.bookings.each do |booking| %>
-        <div class="card-booking">
-          <p><%= booking.space.name %></p>
-          <p><%= booking.status %></p>
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=720&im_format=avif" alt="Space image" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"><%= booking.space.name %></h5>
+            <p class="card-text"><%= booking.status %></p>
+          </div>
         </div>
       <% end %>
     </div>

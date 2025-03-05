@@ -11,6 +11,7 @@
       <p class="card-text"><strong>Price per day:</strong> €<%= @space.price_per_day %></p>
       <p class="card-text"><strong>Capacity:</strong> <%= @space.capacity %> people</p>
       <p class="card-text"><strong>Availability:</strong> <%= @space.availability_status ? "Available" : "Not Available" %></p>
+      <a href="<%= new_space_booking_path(@space) %>" class="btn btn-success mt-3">Book Now</a>
     </div>
   </div>
 </div>

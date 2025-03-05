@@ -11,9 +11,20 @@
       <p class="card-text"><strong>Price per day:</strong> €<%= @space.price_per_day %></p>
       <p class="card-text"><strong>Capacity:</strong> <%= @space.capacity %> people</p>
       <p class="card-text"><strong>Availability:</strong> <%= @space.availability_status ? "Available" : "Not Available" %></p>
-      <a href="<%= new_space_booking_path(@space) %>" class="btn btn-success mt-3">Book Now</a>
+
     </div>
   </div>
 </div>
+
+<div class="card-title">
+  <h1>Booking Details</h1>
+
+  <%= simple_form_for [@space, @booking] do |t| %>
+    <%= t.input :start_date %>
+    <%= t.input :end_date %>
+    <%= t.button :submit %>
+  <% end %>
+</div>
+
 
 <%= link_to "Back to Spaces", spaces_path, class: "btn btn-secondary mt-3" %>

@@ -1,3 +1,18 @@
-<h1>Space Details</h1>
-<p>More details about this space will be shown here.</p>
-<p>The controller is not ready yet.</p>
+<h1><%= @space.name %> Details</h1>
+
+<div class="container">
+  <div class="card" style="width: 24rem;">
+    <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=720&im_format=avif" alt="Space image">
+    <div class="card-body">
+      <h5 class="card-title"><%= @space.name %></h5>
+      <p class="card-text"><strong>Description:</strong> <%= @space.description %></p>
+      <p class="card-text"><strong>Location:</strong> <%= @space.location %></p>
+      <p class="card-text"><strong>Price per hour:</strong> €<%= @space.price_per_hour %></p>
+      <p class="card-text"><strong>Price per day:</strong> €<%= @space.price_per_day %></p>
+      <p class="card-text"><strong>Capacity:</strong> <%= @space.capacity %> people</p>
+      <p class="card-text"><strong>Availability:</strong> <%= @space.availability_status ? "Available" : "Not Available" %></p>
+    </div>
+  </div>
+</div>
+
+<%= link_to "Back to Spaces", spaces_path, class: "btn btn-secondary mt-3" %>

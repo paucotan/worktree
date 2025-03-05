@@ -5,7 +5,11 @@ class PagesController < ApplicationController
   end
 
   def dashboard
-    @spaces = current_user.spaces
-    # @bookings = current_user.bookings(booking_params)
+    if current_user.owner?
+      @spaces = current_user.spaces
+      @bookings = Booking.joins(:space).where(spaces: { owner_id: current_user.id })
+    elsif current_user.renter?
+      @bookings = current_user.bookings
+    end
   end
 end

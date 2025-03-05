@@ -4,7 +4,6 @@ puts "desroyed users"
 Space.destroy_all
 Booking.destroy_all
 
-
 puts "Cleaned database, all good!"
 
 puts "Creating users..."

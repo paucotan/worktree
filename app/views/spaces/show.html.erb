@@ -5,7 +5,7 @@
         <img class="card-img-top"
           src="<%= @space.photo.attached? ? cl_image_path(@space.photo.key) : 'https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=1200&im_format=avif' %>"
           alt="<%= @space.name %>"
-          style="border-radius: 10px 10px 0 0; width: 100%; height: auto;">
+          style="border-radius: 10px 10px 0 0; width: 100%; height: 250px; object-fit: cover;">
         <div class="card-body p-4">
           <h2 class="card-title fw-bold"><%= @space.name %></h2>
           <p class="text-muted"><%= @space.location %></p>

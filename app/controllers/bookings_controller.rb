@@ -13,11 +13,13 @@ class BookingsController < ApplicationController
     @booking.renter = current_user
     @booking.status = "pending"
 
-    if @booking.save
-      redirect_to space_path(@booking.space), notice: 'Booking was successfully created.'
-    else
-      render :new, status: :unprocessable_entity
-    end
+  if @booking.save
+    flash[:notice] = "Your booking request has been submitted."
+    redirect_to space_path(@space)
+  else
+    flash[:alert] = "Something went wrong. Please try again."
+    render :new, status: :unprocessable_entity
+  end
   end
 
   def index

@@ -8,11 +8,7 @@
         <div class="card shadow-lg border-0 rounded-4 overflow-hidden h-100">
 
           <%= link_to space_path(space), class: "text-decoration-none text-dark" do %>
-            <% if space.photo.attached? %>
-              <img class="card-img-top" src="<%= cl_image_path(space.photo.key) %>" alt="Space image" style="height: 220px; object-fit: cover;">
-            <% else %>
-              <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=1200&im_format=avif" alt="Default space image" style="height: 220px; object-fit: cover;">
-            <% end %>
+            <%= cl_image_tag space.photo.key, class: 'card-img-top', height: 220%>
 
             <div class="card-body d-flex flex-column p-4">
               <h5 class="fw-bold mb-2"><%= space.name %></h5>

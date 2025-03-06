@@ -13,11 +13,7 @@
             <% current_user.spaces.each do |space| %>
               <div class="col-md-4 mb-4">
                 <div class="card h-100 d-flex flex-column">
-                  <% if space.photo.attached? %>
-                    <img class="card-img-top" src="<%= cl_image_path(space.photo.key) %>" alt="Space image" style="height: 220px; object-fit: cover;">
-                  <% else %>
-                    <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=1200&im_format=avif" alt="Default space image" style="height: 220px; object-fit: cover;">
-                  <% end %>
+                  <%= cl_image_tag space.photo.key, class: "card-img-top" %>
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><%= space.name %></h5>
                     <p class="card-text"><%= space.location %></p>
@@ -41,11 +37,11 @@
             <% @bookings.each do |booking| %>
               <div class="col-md-4 mb-4">
                 <div class="card h-100 d-flex flex-column">
-                  <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=720&im_format=avif" alt="Space image">
+                  <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><%= booking.space.name %></h5>
-                    <p class="card-text"><%= booking.renter.email %></p>
-                    <p class="card-text"><%= booking.status %></p>
+                    <p class="card-text">Request from: <br> <small><%= booking.renter.email%></small></p>
+                    <p class="card-text">Status: <%= booking.status %></p>
 
                     <% if booking.status == 'pending' %>
                       <div style="display: flex; justify-content: space-between;">
@@ -77,7 +73,7 @@
             <% @bookings.each do |booking| %>
               <div class="col-md-4 mb-4">
                 <div class="card h-100 d-flex flex-column">
-                  <img class="card-img-top" src="https://a0.muscache.com/im/pictures/miso/Hosting-47118372/original/7cb880ec-a5f7-4131-9174-d4e1b124bb67.jpeg?im_w=720&im_format=avif" alt="Space image">
+                  <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><%= booking.space.name %></h5>
                     <p class="card-text"><%= booking.status %></p>

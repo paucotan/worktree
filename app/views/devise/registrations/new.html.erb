@@ -15,6 +15,18 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+
+    <div class="mb-3">
+      <label class="form-label fw-bold">Select your role:</label>
+      <div class="form-check">
+        <%= f.radio_button :role, "owner", id: "role_owner", class: "form-check-input", required: true %>
+        <label class="form-check-label" for="role_owner">Owner (Space Provider)</label>
+      </div>
+      <div class="form-check">
+        <%= f.radio_button :role, "renter", id: "role_renter", class: "form-check-input", required: true %>
+        <label class="form-check-label" for="role_renter">Renter (Looking for spaces)</label>
+      </div>
+    </div>
   </div>
 
   <div class="form-actions">

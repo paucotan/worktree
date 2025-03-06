@@ -1,5 +1,6 @@
 <h1 style="font-size: 3rem; font-weight: bold; text-align: center; margin-top: 50px; margin-bottom: 20px;">Dashboard</h1>
 <p style="text-align: center; font-size: 1.25rem; color: #555; margin-bottom: 40px;">Welcome, <%= current_user.email %>!</p>
+<a href="<%= new_space_path %>" class="btn btn-primary">Add new space</a>
 
 
 <div class="container">
@@ -29,10 +30,9 @@
             <% end %>
           </div>
         </div>
-        <a href="<%= new_space_path %>" class="btn btn-primary">Add new space</a>
+
 
       </div>
-
       <!-- Owner's Bookings Section -->
       <div class="col-md-6" style="border-left:solid gray;">
         <div class="section-container p-3 mb-4">

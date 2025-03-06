@@ -15,15 +15,17 @@
 </div>
 </div>
 
-<div class="card-title">
-  <h1>Booking Details</h1>
+<% if current_user.role == "renter" %>
+  <div class="card-title">
+    <h1>Booking Details</h1>
 
-  <%= simple_form_for [@space, @booking] do |t| %>
-    <%= t.input :start_date %>
-    <%= t.input :end_date %>
-    <%= t.button :submit, class: "btn btn-primary mt-3" %>
-  <% end %>
-</div>
+    <%= simple_form_for [@space, @booking] do |t| %>
+      <%= t.input :start_date %>
+      <%= t.input :end_date %>
+      <%= t.button :submit, class: "btn btn-primary mt-3" %>
+    <% end %>
+  </div>
+<% end %>
 
 
 <%= link_to "Back to Spaces", spaces_path, class: "btn btn-secondary mt-3" %>

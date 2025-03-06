@@ -1,0 +1,9 @@
+<h1>Booking Details</h1>
+
+<%= simple_form_for @booking do |t| %>
+  <%= t.input :name %>
+  <%= t.input :start_date %>
+  <%= t.input :end_date %>
+  <%= t.input :status %>
+  <%= t.button :submit %>
+<% end %>

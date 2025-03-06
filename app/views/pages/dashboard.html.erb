@@ -12,7 +12,7 @@
           <h2 class="text-center">Your Places</h2>
           <div class="row">
             <% current_user.spaces.each do |space| %>
-              <div class="col-md-4 mb-4">
+              <div class="col-md-6 mb-4">
                 <div class="card h-100 d-flex flex-column">
                   <%= cl_image_tag space.photo.key, class: "card-img-top" %>
                   <div class="card-body d-flex flex-column">
@@ -35,7 +35,7 @@
           <h2 class="text-center">Your Bookings</h2>
           <div class="row">
             <% @bookings.each do |booking| %>
-              <div class="col-md-4 mb-4">
+              <div class="col-md-6 mb-4">
                 <div class="card h-100 d-flex flex-column">
                   <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
                   <div class="card-body d-flex flex-column">
@@ -44,12 +44,15 @@
                     <p class="card-text">Status: <%= booking.status %></p>
 
                     <% if booking.status == 'pending' %>
-                      <div style="display: flex; justify-content: space-between;">
-                        <%= button_to accept_booking_path(booking), method: :patch, class: "btn-accept", style: "background-color: transparent; border: none; font-size: 2rem; cursor: pointer; color: #4CAF50;" do %>
-                          <i class="fas fa-check-circle"></i>
+                      <div class="d-flex justify-content-between">
+                        <!-- Accept Booking Button -->
+                        <%= button_to accept_booking_path(booking), method: :patch, class: "btn btn-success btn-sm" do %>
+                          <i class="fas fa-check-circle"></i> Accept
                         <% end %>
-                        <%= button_to decline_booking_path(booking), method: :patch, class: "btn-decline", style: "background-color: transparent; border: none; font-size: 2rem; cursor: pointer; color: #f44336;" do %>
-                          &#x274C;
+
+                        <!-- Decline Booking Button -->
+                        <%= button_to decline_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm" do %>
+                          <i class="fas fa-times-circle"></i> Decline
                         <% end %>
                       </div>
                     <% end %>

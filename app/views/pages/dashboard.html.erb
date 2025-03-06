@@ -40,8 +40,8 @@
                   <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><%= booking.space.name %></h5>
-                    <p class="card-text"><%= booking.renter.email %></p>
-                    <p class="card-text"><%= booking.status %></p>
+                    <p class="card-text">Request from: <br> <small><%= booking.renter.email%></small></p>
+                    <p class="card-text">Status: <%= booking.status %></p>
 
                     <% if booking.status == 'pending' %>
                       <div style="display: flex; justify-content: space-between;">

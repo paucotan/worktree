@@ -6,6 +6,7 @@
     <% @spaces.each do |space| %>
       <div class="col-lg-4 col-md-6 mb-4">
         <div class="card shadow-lg border-0 rounded-4 overflow-hidden h-100">
+
           <%= link_to space_path(space), class: "text-decoration-none text-dark" do %>
             <%= cl_image_tag space.photo.key, class: 'card-img-top', height: 220%>
 
@@ -21,6 +22,7 @@
               <p class="mt-auto text-muted small">Click to view details</p>
             </div>
           <% end %>
+
         </div>
       </div>
     <% end %>

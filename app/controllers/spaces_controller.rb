@@ -16,16 +16,19 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
+    @space.owner = current_user  # Ensure the space is assigned to the logged-in user
+    @space.availability_status = true  # Set the availability status to true by default
     if @space.save
-      redirect_to @space, notice: "Space was successfully created."
+      redirect_to space_path(@space), notice: "Space created successfully!"
     else
-      render :new
+      puts @space.errors.full_messages  # Debugging: Print errors in the console
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
   def space_params
-    params.require(:space).permit(:name, :description, :location, :price_per_day, :price_per_hour, :capacity, :availability_status, )
+    params.require(:space).permit(:name, :description, :location, :price_per_day, :price_per_hour, :capacity, :availability_status, :photo )
   end
 end

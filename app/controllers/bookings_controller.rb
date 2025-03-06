@@ -66,12 +66,8 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking = Booking.find(params[:id])
-
-    if @booking.space.owner == current_user
-      @booking.destroy
-      redirect_to user_dashboard_path, notice: 'Booking was successfully deleted.'
-    else
-      redirect_to user_dashboard_path, alert: 'You are not authorized to delete this booking.'
+    if @booking.destroy
+      redirect_to user_dashboard_path, alert: "YOU SUCK"
     end
   end
 

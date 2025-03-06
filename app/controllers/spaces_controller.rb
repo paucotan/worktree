@@ -16,15 +16,23 @@ class SpacesController < ApplicationController
 
   def create
     @space = Space.new(space_params)
-    @space.owner = current_user  # Ensure the space is assigned to the logged-in user
-    @space.availability_status = true  # Set the availability status to true by default
+    @space.owner = current_user
+    @space.availability_status = true
     if @space.save
       redirect_to space_path(@space), notice: "Space created successfully!"
     else
-      puts @space.errors.full_messages  # Debugging: Print errors in the console
+      puts @space.errors.full_messages
       render :new, status: :unprocessable_entity
     end
   end
+
+  def destroy
+    @space = Space.find(params[:id])
+    if @space.destroy
+      redirect_to user_dashboard_path, alert: "YOU SUCK"
+    end
+  end
+
 
   private
 

@@ -8,22 +8,18 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
     <header class="p-3 bg-dark text-white mb-3">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
-          <!-- Logo -->
           <a class="navbar-brand" href="<%= root_path %>">
             <%= image_tag "worktree_logo.png", alt: "logo", height: "50", class: "d-inline-block align-text-top" %>
           </a>
 
-          <!-- Mobile Toggle Button -->
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <!-- Navbar Content -->
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
             <ul class="navbar-nav d-flex align-items-center">
               <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link px-3 text-white' %></li>
@@ -38,22 +34,42 @@
           </div>
         </div>
       </nav>
+    </header>
 
-    <% if flash[:notice] %>
-      <div class="alert alert-success alert-dismissible fade show text-center fade out" role="alert">
-        <%= flash[:notice] %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% elsif flash[:alert] %>
-      <div class="alert alert-danger alert-dismissible fade show text-center fade out" role="alert">
-        <%= flash[:alert] %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    <% end %>
- </header>
+    <div class="container mt-3">
+      <% if flash[:notice] %>
+        <div class="alert alert-success alert-dismissible fade show text-center fixed-bottom right-0 m-3"  role="alert">
+          <%= flash[:notice] %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% elsif flash[:alert] %>
+        <div class="alert alert-danger alert-dismissible fade show text-center fixed-bottom right-0 m-3" role="alert">
+          <%= flash[:alert] %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% end %>
+    </div>
+
+
+    <style>
+    .alert {
+      animation: fadeOut 5s forwards;
+    }
+
+    @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+      display: none;
+    }
+    }
+    </style>
+
 
     <div class="container">
-    <%= yield %>
+      <%= yield %>
     </div>
   </body>
 </html>

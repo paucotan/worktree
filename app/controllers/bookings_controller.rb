@@ -12,14 +12,17 @@ class BookingsController < ApplicationController
     @booking.space = @space
     @booking.renter = current_user
     @booking.status = "pending"
+    end_date = booking_params[:start_date].split(" to ").last
+    @booking.end_date = end_date
 
-  if @booking.save
-    flash[:notice] = "Your booking request has been submitted."
-    redirect_to space_path(@space)
-  else
-    flash[:alert] = "Something went wrong. Please try again."
-    render :new, status: :unprocessable_entity
-  end
+
+    if @booking.save
+      flash[:notice] = "Your booking request has been submitted."
+      redirect_to space_path(@space)
+    else
+      flash[:alert] = "Something went wrong. Please try again."
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def index

@@ -14,7 +14,7 @@
             <p class="fw-bold fs-5 text-success">€<%= @space.price_per_hour %> / hour</p>
             <p class="fw-bold fs-5 text-success">€<%= @space.price_per_day %> / day</p>
           </div>
-          <p class="card-text"><strong>Capacity:</strong> <%= @space.capacity %> people</p>
+          <p class="card-text"><strong>Capacity:</strong> <i class="fa-solid fa-user"></i> x <%= @space.capacity %></p>
           <p class="card-text">
             <strong>Availability:</strong>
             <span class="badge <%= @space.availability_status ? 'bg-success' : 'bg-danger' %>">

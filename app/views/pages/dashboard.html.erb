@@ -1,5 +1,6 @@
 <h1 style="font-size: 3rem; font-weight: bold; text-align: center; margin-top: 50px; margin-bottom: 20px;">Dashboard</h1>
 <p style="text-align: center; font-size: 1.25rem; color: #555; margin-bottom: 40px;">Welcome, <%= current_user.email %>!</p>
+<a href="<%= new_space_path %>" class="btn"  style="background-color: #D65A31; color: #EEEEEE">Add new space</a>
 
 
 <div class="container">
@@ -18,14 +19,14 @@
                 <div class="card h-100 d-flex flex-column">
                   <%= cl_image_tag space.photo.key, class: "card-img-top" %>
 
-                  <%= button_to space_path(space), method: :delete, data: { confirm: 'Are you sure you want to delete this space?' }, class: "transparent-delete-btn btn-sm position-absolute top-0 end-0 m-2" do %>
-                    <i class="fa-solid fa-trash"></i>
+                  <%= button_to space_path(space), method: :delete,  style:"background-color: #222831", data: { confirm: 'Are you sure you want to delete this space?' }, class: "transparent-delete-btn btn-sm position-absolute top-0 end-0 m-2" do %>
+                    <i class="fa-solid fa-trash", style="color: #D65A31; background-color: #222831"></i>
                   <% end %>
 
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><%= space.name %></h5>
                     <p class="card-text"><%= space.location %></p>
-                    <a href="<%= space_path(space) %>" class="btn btn-primary mt-auto">View Details</a>
+                    <a href="<%= space_path(space) %>" class="btn mt-auto"  style="background-color: #D65A31; color: #EEEEEE">View Details</a>
                   </div>
                 </div>
               </div>
@@ -46,26 +47,25 @@
                 <div class="card h-100 d-flex flex-column">
                   <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
                   <% if booking.space.owner == current_user %>
-                    <%= button_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure you want to delete this booking?' }, class: "transparent-delete-btn btn-sm position-absolute top-0 end-0 m-2" do %>
-                      <i class="fa-solid fa-trash"></i>
+                    <%= button_to booking_path(booking), method: :delete, style:"background-color: #222831", data: { confirm: 'Are you sure you want to delete this booking?' }, class: "transparent-delete-btn btn-sm position-absolute top-0 end-0 m-2" do %>
+                      <i class="fa-solid fa-trash"  style="color: #D65A31; background-color: #222831"></i>
                     <% end %>
                   <% end %>
 
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><%= booking.space.name %></h5>
-                    <p class="card-text">Renter: <br> <small><%= booking.renter.email%></small></p>
-                    <p class="card-text">Status: <%= booking.status %></p>
-                    <p class="card-text">
-                      Dates: <span style="font-size: 0.8em;"><%= booking.start_date.strftime("%d/%m/%Y") %> - <%= booking.end_date.strftime("%d/%m/%Y") %></span>
-                    </p>
+                    <p class="card-text">Request from: <br> <small><%= booking.renter.email%></small></p>
+                    <p class="card-text"  style="color: #D65A31;">Status: <%= booking.status %></p>
 
                     <% if booking.status == 'pending' %>
                       <div class="d-flex justify-content-between">
-                        <%= button_to accept_booking_path(booking), method: :patch, class: "btn btn-success btn-sm" do %>
+                        <!-- Accept Booking Button -->
+                        <%= button_to accept_booking_path(booking), method: :patch, style:"background-color: #ACD597; border: solid #ACD597", class: "btn btn-success btn-sm" do %>
                           <i class="fas fa-check-circle"></i> Accept
                         <% end %>
 
-                        <%= button_to decline_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm" do %>
+                        <!-- Decline Booking Button -->
+                        <%= button_to decline_booking_path(booking), method: :patch,style:"background-color: #E73351", class: "btn btn-danger btn-sm" do %>
                           <i class="fas fa-times-circle"></i> Decline
                         <% end %>
                       </div>
@@ -91,7 +91,7 @@
                   <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
                   <div class="card-body d-flex flex-column">
                     <h5 class="card-title"><%= booking.space.name %></h5>
-                    <p class="card-text"><%= booking.status %></p>
+                    <p class="card-text" style="color: #D65A31;"><%= booking.status %></p>
                     <p class="card-text">
                       Dates: <span style="font-size: 0.8em;"><%= booking.start_date.strftime("%d/%m/%Y") %> - <%= booking.end_date.strftime("%d/%m/%Y") %></span>
                     </p>

@@ -57,12 +57,12 @@
                     <% if booking.status == 'pending' %>
                       <div class="d-flex justify-content-between">
                         <!-- Accept Booking Button -->
-                        <%= button_to accept_booking_path(booking), method: :patch, class: "btn btn-success btn-sm" do %>
+                        <%= button_to accept_booking_path(booking), method: :patch, style:"background-color: #ACD597; border: solid #ACD597", class: "btn btn-success btn-sm" do %>
                           <i class="fas fa-check-circle"></i> Accept
                         <% end %>
 
                         <!-- Decline Booking Button -->
-                        <%= button_to decline_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm" do %>
+                        <%= button_to decline_booking_path(booking), method: :patch,style:"background-color: #E73351", class: "btn btn-danger btn-sm" do %>
                           <i class="fas fa-times-circle"></i> Decline
                         <% end %>
                       </div>

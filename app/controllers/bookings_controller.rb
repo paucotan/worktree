@@ -21,7 +21,7 @@ class BookingsController < ApplicationController
       redirect_to space_path(@space)
     else
       flash[:alert] = "Something went wrong. Please try again."
-      render :new, status: :unprocessable_entity
+      redirect_to space_path(@space)
     end
   end
 

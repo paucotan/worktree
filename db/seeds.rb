@@ -59,7 +59,7 @@ space3 = Space.create!(
   price_per_hour: 12,
   price_per_day: 90,
   capacity: 6,
-  availability_status: false,
+  availability_status: true,
   owner: owner1
 )
 space3.photo.attach(io: URI.open(space_images[2]), filename: 'space.jpg', content_type: 'image/jpg')

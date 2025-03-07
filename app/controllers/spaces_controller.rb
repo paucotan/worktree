@@ -2,7 +2,11 @@ class SpacesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @spaces = Space.all
+    @spaces = if current_user&.owner?
+      Space.where.not(owner_id: current_user.id)
+    else
+      Space.all
+    end
   end
 
   def show

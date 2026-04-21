@@ -3,15 +3,17 @@ class SpacesController < ApplicationController
 
   def index
     @spaces = if current_user&.owner?
-      Space.where.not(owner_id: current_user.id)
-    else
-      Space.all
-    end
+                Space.where.not(owner_id: current_user.id)
+              else
+                Space.all
+              end
   end
 
   def show
     @space = Space.find(params[:id])
     @booking = Booking.new
+    @accepted_bookings = @space.bookings.where(status: "accepted")
+    @booked_dates = @accepted_bookings.pluck(:start_date, :end_date)
   end
 
   def new

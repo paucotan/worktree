@@ -10,3 +10,436 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+// Global
+* { box-sizing: border-box; }
+
+body {
+  background: $bg;
+  color: $primary;
+  font-family: $body-font;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  padding-bottom: 4rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $headers-font;
+  color: $primary;
+}
+
+.page-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.page-header {
+  margin-bottom: 2.5rem;
+
+  h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  p {
+    color: $muted;
+    font-size: 1rem;
+    margin: 0;
+  }
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.section-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+// Space detail stats
+.space-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: $primary;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: $muted;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.availability-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.dot-available   { background: #4A6741; }
+.dot-unavailable { background: $red; }
+
+// Booking card (space show)
+.booking-card {
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 14px;
+  padding: 1.75rem;
+  position: sticky;
+  top: 1.5rem;
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Status badges
+.status-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
+
+  &.status-pending  { background: #FFF3CD; color: #856404; }
+  &.status-accepted { background: #D1E7DD; color: #0A3622; }
+  &.status-declined { background: #F8D7DA; color: #58151C; }
+}
+
+.booking-meta {
+  color: $muted;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.back-link {
+  color: $muted;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover { color: $primary; }
+}
+
+// Spaces hero (on index/root page)
+.spaces-hero {
+  background: $bg;
+  padding: 4rem 1.5rem 2rem;
+  text-align: center;
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $accent;
+    background: rgba(74, 103, 65, 0.08);
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+  }
+
+  .hero-title {
+    font-family: $headers-font;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.2;
+    color: $primary;
+    margin-bottom: 0.85rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: $muted;
+    margin: 0;
+  }
+}
+
+// Auth pages (login / signup)
+.auth-page {
+  min-height: calc(100vh - 61px - 180px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+}
+
+.auth-card {
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 16px;
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  p {
+    color: $muted;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+}
+
+.auth-error {
+  background: #FEF2F2;
+  color: #B91C1C;
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  font-size: 0.875rem;
+  margin-bottom: 1.25rem;
+}
+
+.auth-links {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: $muted;
+
+  a {
+    color: $accent;
+    text-decoration: none;
+    font-weight: 500;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  br { margin-bottom: 0.4rem; }
+}
+
+// Role selector on signup
+.role-selector {
+  margin: 1.25rem 0;
+}
+
+.role-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: $primary;
+  margin-bottom: 0.75rem;
+}
+
+.role-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.role-radio { display: none; }
+
+.role-option {
+  cursor: pointer;
+
+  .role-box {
+    border: 1.5px solid $border;
+    border-radius: 10px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    text-align: center;
+    transition: all 0.18s;
+  }
+
+  &:hover .role-box {
+    border-color: $accent;
+    background: rgba(74, 103, 65, 0.04);
+  }
+}
+
+.role-radio:checked + .role-box {
+  border-color: $accent;
+  background: rgba(74, 103, 65, 0.06);
+}
+
+.role-icon {
+  font-size: 1.4rem;
+  color: $accent;
+  margin-bottom: 0.2rem;
+}
+
+.role-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: $primary;
+}
+
+.role-desc {
+  font-size: 0.75rem;
+  color: $muted;
+}
+
+// Space form helpers
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1rem;
+
+  @media (max-width: 576px) { grid-template-columns: 1fr; }
+}
+
+.form-row-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0 1rem;
+
+  @media (max-width: 576px) { grid-template-columns: 1fr; }
+}
+
+.file-upload-area {
+  border: 1.5px dashed $border;
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: $accent; }
+}
+
+.upload-icon {
+  font-size: 1.75rem;
+  color: $muted;
+  margin-bottom: 0.4rem;
+}
+
+.upload-label {
+  font-size: 0.875rem;
+  color: $muted;
+  margin-bottom: 0.75rem;
+}
+
+// Empty state
+.empty-state {
+  text-align: center;
+  padding: 5rem 1rem;
+  color: $muted;
+
+  .empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.35;
+  }
+
+  h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: $primary;
+    margin-bottom: 0.4rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Footer
+.site-footer {
+  background: $primary;
+  color: rgba(255,255,255,0.7);
+  margin-top: auto;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer-brand {
+  img { filter: brightness(0) invert(1); margin-bottom: 0.75rem; }
+
+  p {
+    font-size: 0.85rem;
+    max-width: 260px;
+    line-height: 1.6;
+  }
+}
+
+.footer-links {
+  display: flex;
+  gap: 3rem;
+
+  @media (max-width: 576px) { gap: 2rem; }
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.2s;
+
+    &:hover { color: #fff; }
+  }
+}
+
+.footer-heading {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 0.25rem;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.25rem 1.5rem;
+
+  p {
+    font-size: 0.8rem;
+    margin: 0;
+    color: rgba(255,255,255,0.35);
+  }
+}

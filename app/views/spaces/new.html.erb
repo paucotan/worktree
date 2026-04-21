@@ -1,3 +1,12 @@
-<h1>Add a New Space</h1>
-<%= render "form" %>
-<%= link_to "Back", spaces_path, class: "btn btn-secondary mt-3" %>
+<div class="auth-page">
+  <div class="auth-card" style="max-width: 600px;">
+    <div class="auth-header">
+      <h1>Add a new space</h1>
+      <p>Fill in the details to list your coworking space.</p>
+    </div>
+    <%= render "form" %>
+    <div class="text-center mt-3">
+      <%= link_to "← Back to spaces", spaces_path, class: "back-link" %>
+    </div>
+  </div>
+</div>

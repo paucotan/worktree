@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Worktree</title>
+    <title>Worktree — Find your space</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -9,26 +9,37 @@
     <%= javascript_importmap_tags %>
   </head>
   <body>
-    <header class="p-3 bg-dark text-white mb-3">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-main">
         <div class="container-fluid">
           <a class="navbar-brand" href="<%= root_path %>">
-            <%= image_tag "worktree_logo.png", alt: "logo", height: "50", class: "d-inline-block align-text-top" %>
+            <%= image_tag "worktree_logo.png", alt: "Worktree", height: "36" %>
           </a>
 
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
           </button>
 
           <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-            <ul class="navbar-nav d-flex align-items-center">
-              <li class="nav-item"><%= link_to 'Home', root_path, class: 'nav-link px-3 text-white' %></li>
-              <li class="nav-item"><%= link_to 'Dashboard', user_dashboard_path, class: 'nav-link px-3 text-white' %></li>
-
-              <% if current_user %>
-                <li class="nav-item"><%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link px-3 text-white" %></li>
+            <ul class="navbar-nav d-flex align-items-center gap-1">
+              <li class="nav-item">
+                <%= link_to 'Spaces', root_path, class: "nav-link #{current_page?(root_path) ? 'nav-link-active' : ''}" %>
+              </li>
+              <% if user_signed_in? %>
+                <li class="nav-item">
+                  <%= link_to 'Dashboard', user_dashboard_path, class: "nav-link #{current_page?(user_dashboard_path) ? 'nav-link-active' : ''}" %>
+                </li>
+                <% if current_user.owner? %>
+                  <li class="nav-item">
+                    <%= link_to '+ Add space', new_space_path, class: "nav-btn nav-btn-fill" %>
+                  </li>
+                <% end %>
+                <li class="nav-item ms-1">
+                  <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-btn" %>
+                </li>
               <% else %>
-                <li class="nav-item"><%= link_to 'Log in', new_user_session_path, class: 'nav-link px-3 text-white' %></li>
+                <li class="nav-item ms-1"><%= link_to 'Log in', new_user_session_path, class: 'nav-btn' %></li>
+                <li class="nav-item"><%= link_to 'Sign up', new_user_registration_path, class: 'nav-btn nav-btn-fill' %></li>
               <% end %>
             </ul>
           </div>
@@ -36,40 +47,51 @@
       </nav>
     </header>
 
-    <div class="container mt-3">
-      <% if flash[:notice] %>
-        <div class="alert alert-success alert-dismissible fade show text-center fixed-bottom right-0 m-3"  role="alert">
-          <%= flash[:notice] %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <% elsif flash[:alert] %>
-        <div class="alert alert-danger alert-dismissible fade show text-center fixed-bottom right-0 m-3" role="alert">
-          <%= flash[:alert] %>
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-      <% end %>
-    </div>
+    <% if flash[:notice] %>
+      <div class="flash-notice">
+        <%= flash[:notice] %>
+        <button onclick="this.parentElement.remove()" class="flash-close">&times;</button>
+      </div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="flash-alert">
+        <%= flash[:alert] %>
+        <button onclick="this.parentElement.remove()" class="flash-close">&times;</button>
+      </div>
+    <% end %>
 
-
-    <style>
-    .alert {
-      animation: fadeOut 5s forwards;
-    }
-
-    @keyframes fadeOut {
-    0% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-      display: none;
-    }
-    }
-    </style>
-
-
-    <div class="container">
+    <main>
       <%= yield %>
-    </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <%= image_tag "worktree_logo.png", alt: "Worktree", height: "28" %>
+          <p>Find and book coworking spaces that work for you.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-col">
+            <span class="footer-heading">Discover</span>
+            <%= link_to "Browse spaces", root_path %>
+            <% if user_signed_in? %>
+              <%= link_to "Dashboard", user_dashboard_path %>
+            <% end %>
+          </div>
+          <div class="footer-col">
+            <span class="footer-heading">Account</span>
+            <% if user_signed_in? %>
+              <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete } %>
+            <% else %>
+              <%= link_to "Log in", new_user_session_path %>
+              <%= link_to "Sign up", new_user_registration_path %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© <%= Date.today.year %> Worktree. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>

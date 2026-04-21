@@ -1,37 +1,51 @@
-<h2>Sign up</h2>
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-header">
+      <h1>Create an account</h1>
+      <p>Join Worktree and find your space</p>
+    </div>
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= f.error_notification class: "auth-error" %>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <%= f.input :email, required: true, autofocus: true,
+          label: "Email",
+          input_html: { autocomplete: "email", class: "form-control", placeholder: "you@example.com" } %>
+      <%= f.input :password, required: true,
+          label: "Password",
+          hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+          input_html: { autocomplete: "new-password", class: "form-control", placeholder: "••••••••" } %>
+      <%= f.input :password_confirmation, required: true,
+          label: "Confirm password",
+          input_html: { autocomplete: "new-password", class: "form-control", placeholder: "••••••••" } %>
 
-    <div class="mb-3">
-      <label class="form-label fw-bold">Select your role:</label>
-      <div class="form-check">
-        <%= f.radio_button :role, "owner", id: "role_owner", class: "form-check-input", required: true %>
-        <label class="form-check-label" for="role_owner">Owner (Space Provider)</label>
+      <div class="role-selector">
+        <p class="role-label">I want to…</p>
+        <div class="role-options">
+          <label class="role-option" for="role_owner">
+            <%= f.radio_button :role, "owner", id: "role_owner", class: "role-radio" %>
+            <div class="role-box">
+              <i class="fas fa-building role-icon"></i>
+              <span class="role-title">List a space</span>
+              <span class="role-desc">I'm a space owner</span>
+            </div>
+          </label>
+          <label class="role-option" for="role_renter">
+            <%= f.radio_button :role, "renter", id: "role_renter", class: "role-radio" %>
+            <div class="role-box">
+              <i class="fas fa-laptop role-icon"></i>
+              <span class="role-title">Book a space</span>
+              <span class="role-desc">I'm looking for a workspace</span>
+            </div>
+          </label>
+        </div>
       </div>
-      <div class="form-check">
-        <%= f.radio_button :role, "renter", id: "role_renter", class: "form-check-input", required: true %>
-        <label class="form-check-label" for="role_renter">Renter (Looking for spaces)</label>
-      </div>
+
+      <%= f.button :submit, "Create account", class: "btn btn-primary w-100 mt-2" %>
+    <% end %>
+
+    <div class="auth-links">
+      <%= render "devise/shared/links" %>
     </div>
   </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

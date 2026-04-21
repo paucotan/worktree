@@ -1,9 +1,13 @@
-<h1>Welcome to WorkTree</h1>
-<p>Find and book the perfect coworking space!</p>
-
-<% if user_signed_in? %>
-  <p><%= link_to "Go to Dashboard", user_dashboard_path, class: "btn btn-primary" %></p>
-<% else %>
-  <p><%= link_to "Sign Up", new_user_registration_path, class: "btn btn-success" %> or
-    <%= link_to "Log In", new_user_session_path, class: "btn btn-secondary" %></p>
-<% end %>
+<div class="hero">
+  <div class="hero-content">
+    <span class="hero-tag">Coworking spaces across the city</span>
+    <h1 class="hero-title">Find your perfect<br>place to work</h1>
+    <p class="hero-sub">Browse unique coworking spaces, book by the hour or day, and get to work.</p>
+    <div class="hero-actions">
+      <%= link_to "Browse spaces", spaces_path, class: "btn btn-primary btn-lg" %>
+      <% unless user_signed_in? %>
+        <%= link_to "Create an account", new_user_registration_path, class: "btn btn-outline-dark btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>

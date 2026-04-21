@@ -1,5 +1,35 @@
+.card {
+  border: 1px solid $border;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  transition: box-shadow 0.2s, transform 0.2s;
+  background: #fff;
+
+  &:hover {
+    box-shadow: 0 8px 24px rgba(0,0,0,.10);
+    transform: translateY(-2px);
+  }
+}
+
 .card-img-top {
   height: 220px;
   object-fit: cover;
   object-position: center;
+  border-radius: 12px 12px 0 0;
+}
+
+.card-body {
+  padding: 1.25rem;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: $primary;
+  margin-bottom: 0.35rem;
+}
+
+.card-text {
+  font-size: 0.875rem;
+  color: $muted;
 }

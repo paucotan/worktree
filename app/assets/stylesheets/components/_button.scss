@@ -1,14 +1,56 @@
-.transparent-delete-btn {
-  background: rgba(255, 255, 255, 0.5); /* Light background with 50% transparency */
-  color: black;
-  border: none;
-  padding: 5px 8px;
-  font-size: 14px;
-  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
+.btn {
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  transition: all 0.2s;
+  box-shadow: none !important;
 }
 
-/* When hovered, background becomes more visible */
-.transparent-delete-btn:hover {
-  background: rgba(255, 255, 255, 0.8);
-  color: rgb(0, 0, 0);
+.btn-primary {
+  background: $accent;
+  border-color: $accent;
+  color: #fff;
+
+  &:hover, &:focus {
+    background: darken($accent, 8%);
+    border-color: darken($accent, 8%);
+  }
+}
+
+.btn-outline-dark {
+  border-color: $border;
+  color: $primary;
+
+  &:hover {
+    background: $primary;
+    border-color: $primary;
+    color: #fff;
+  }
+}
+
+.btn-success {
+  background: $accent;
+  border-color: $accent;
+}
+
+.btn-danger {
+  background: $red;
+  border-color: $red;
+}
+
+.transparent-delete-btn {
+  background: rgba(255,255,255,0.7);
+  color: $primary;
+  border: none;
+  padding: 5px 8px;
+  font-size: 13px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  transition: background 0.2s;
+
+  &:hover {
+    background: rgba(255,255,255,0.95);
+  }
 }

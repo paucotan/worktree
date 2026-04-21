@@ -7,22 +7,34 @@
 // General style
 $font-family-sans-serif: $body-font;
 $headings-font-family:   $headers-font;
-$body-bg:                $light-gray;
+$body-bg:                $bg;
+$body-color:             $primary;
 $font-size-base:         1rem;
+$line-height-base:       1.65;
 
 // Colors
-$body-color: $gray;
-$primary:    $blue;
-$success:    $green;
-$info:       $yellow;
+$primary:    $accent;
+$success:    #4A6741;
+$info:       #6B8F71;
 $danger:     $red;
-$warning:    $orange;
+$warning:    $yellow;
+$secondary:  #767676;
 
 // Buttons & inputs' radius
-$border-radius-sm:            .0625rem;
-$border-radius:               .125rem;
-$border-radius-lg:            .25rem;
-$border-radius-xl:            .5rem;
-$border-radius-xxl:           1rem;
+$border-radius-sm:   4px;
+$border-radius:      8px;
+$border-radius-lg:   12px;
+$border-radius-xl:   16px;
+$border-radius-xxl:  24px;
+
+// Input
+$input-border-color:    $border;
+$input-focus-border-color: $accent;
+$input-focus-box-shadow: none;
+
+// Shadows
+$box-shadow-sm:  0 1px 3px rgba(0,0,0,.06);
+$box-shadow:     0 4px 16px rgba(0,0,0,.08);
+$box-shadow-lg:  0 8px 32px rgba(0,0,0,.10);
 
 // Override other variables below!

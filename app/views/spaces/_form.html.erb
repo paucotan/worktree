@@ -1,16 +1,27 @@
 <%= simple_form_for @space do |f| %>
-  <div class="mb-3">
-    <%= f.input :name, required: true %>
-    <%= f.input :description, required: true %>
-    <%= f.input :location, required: true %>
-    <%= f.input :price_per_hour, required: true %>
-    <%= f.input :price_per_day, required: true %>
-    <%= f.input :capacity, required: true %>
+  <div class="form-row-2">
+    <%= f.input :name, required: true, input_html: { class: "form-control", placeholder: "e.g. The Loft Studio" } %>
+    <%= f.input :location, required: true, input_html: { class: "form-control", placeholder: "e.g. Berlin, Mitte" } %>
   </div>
 
-  <div class="mb-3">
-    <%= f.input :photo, as: :file, label: "Upload Space Image" %>
+  <%= f.input :description, required: true, as: :text,
+      input_html: { class: "form-control", rows: 4, placeholder: "Describe your space…" } %>
+
+  <div class="form-row-3">
+    <%= f.input :price_per_hour, required: true, label: "Price / hour (€)",
+        input_html: { class: "form-control", placeholder: "15" } %>
+    <%= f.input :price_per_day, required: true, label: "Price / day (€)",
+        input_html: { class: "form-control", placeholder: "80" } %>
+    <%= f.input :capacity, required: true, label: "Capacity (people)",
+        input_html: { class: "form-control", placeholder: "10" } %>
   </div>
 
-  <%= f.submit "Create Space", class: "btn btn-primary" %>
+  <div class="file-upload-area">
+    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+    <p class="upload-label">Upload a photo of your space</p>
+    <%= f.input :photo, as: :file, label: false,
+        input_html: { class: "form-control", accept: "image/*" } %>
+  </div>
+
+  <%= f.submit "Create space", class: "btn btn-primary w-100 mt-2" %>
 <% end %>

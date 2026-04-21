@@ -11,20 +11,25 @@
           <h2 class="section-title">Your Spaces</h2>
           <%= link_to "+ Add space", new_space_path, class: "btn btn-primary btn-sm" %>
         </div>
-        <div class="row g-3">
-          <% current_user.spaces.each do |space| %>
-            <div class="col-12">
-              <div class="card position-relative">
-                <%= cl_image_tag space.photo.key, class: "card-img-top" %>
+        <div class="d-flex flex-column gap-3">
+          <% if current_user.spaces.any? %>
+            <% current_user.spaces.each do |space| %>
+              <div class="hcard position-relative">
+                <%= cl_image_tag space.photo.key, class: "hcard-img" %>
+                <div class="hcard-body">
+                  <h5 class="hcard-title"><%= space.name %></h5>
+                  <p class="hcard-text"><i class="fas fa-map-marker-alt me-1"></i><%= space.location %></p>
+                  <%= link_to "View details", space_path(space), class: "btn btn-outline-dark btn-sm mt-auto" %>
+                </div>
                 <%= button_to space_path(space), method: :delete, data: { confirm: 'Are you sure?' }, class: "transparent-delete-btn position-absolute top-0 end-0 m-2" do %>
                   <i class="fa-solid fa-trash"></i>
                 <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= space.name %></h5>
-                  <p class="card-text"><%= space.location %></p>
-                  <%= link_to "View details", space_path(space), class: "btn btn-outline-dark btn-sm mt-1" %>
-                </div>
               </div>
+            <% end %>
+          <% else %>
+            <div class="empty-state-inline">
+              <p>No spaces listed yet.</p>
+              <%= link_to "Add your first space", new_space_path, class: "btn btn-primary btn-sm" %>
             </div>
           <% end %>
         </div>
@@ -32,42 +37,41 @@
 
       <div class="col-md-6">
         <div class="section-header">
-          <h2 class="section-title">Bookings</h2>
+          <h2 class="section-title">Booking Requests</h2>
         </div>
-        <div class="row g-3">
-          <% @bookings.each do |booking| %>
-            <div class="col-12">
-              <div class="card position-relative">
-                <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
-                <% if booking.space.owner == current_user %>
-                  <%= button_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' }, class: "transparent-delete-btn position-absolute top-0 end-0 m-2" do %>
-                    <i class="fa-solid fa-trash"></i>
-                  <% end %>
-                <% end %>
-                <div class="card-body">
-                  <h5 class="card-title"><%= booking.space.name %></h5>
-                  <p class="card-text">
-                    <span class="booking-meta">Renter:</span> <%= booking.renter.email %>
-                  </p>
-                  <p class="card-text">
-                    <span class="booking-meta">Dates:</span>
-                    <%= booking.start_date.strftime("%d %b %Y") %> – <%= booking.end_date.strftime("%d %b %Y") %>
-                  </p>
-                  <div class="d-flex align-items-center justify-content-between mt-2">
+        <div class="d-flex flex-column gap-3">
+          <% if @bookings.any? %>
+            <% @bookings.each do |booking| %>
+              <div class="hcard position-relative">
+                <%= cl_image_tag booking.space.photo.key, class: "hcard-img" %>
+                <div class="hcard-body">
+                  <h5 class="hcard-title"><%= booking.space.name %></h5>
+                  <p class="hcard-text"><%= booking.renter.email %></p>
+                  <p class="hcard-text"><%= booking.start_date.strftime("%d %b") %> – <%= booking.end_date.strftime("%d %b %Y") %></p>
+                  <div class="hcard-actions">
                     <span class="status-badge status-<%= booking.status %>"><%= booking.status %></span>
                     <% if booking.status == 'pending' %>
-                      <div class="d-flex gap-2">
-                        <%= button_to accept_booking_path(booking), method: :patch, class: "btn btn-primary btn-sm" do %>
+                      <div class="d-flex gap-2 mt-1">
+                        <%= button_to accept_booking_path(booking), method: :patch, class: "btn btn-primary btn-xs" do %>
                           <i class="fas fa-check"></i> Accept
                         <% end %>
-                        <%= button_to decline_booking_path(booking), method: :patch, class: "btn btn-danger btn-sm" do %>
+                        <%= button_to decline_booking_path(booking), method: :patch, class: "btn btn-danger btn-xs" do %>
                           <i class="fas fa-times"></i> Decline
                         <% end %>
                       </div>
                     <% end %>
                   </div>
                 </div>
+                <% if booking.space.owner == current_user %>
+                  <%= button_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' }, class: "transparent-delete-btn position-absolute top-0 end-0 m-2" do %>
+                    <i class="fa-solid fa-trash"></i>
+                  <% end %>
+                <% end %>
               </div>
+            <% end %>
+          <% else %>
+            <div class="empty-state-inline">
+              <p>No booking requests yet.</p>
             </div>
           <% end %>
         </div>
@@ -78,21 +82,29 @@
     <div class="section-header">
       <h2 class="section-title">Your Bookings</h2>
     </div>
-    <div class="row g-4">
-      <% @bookings.each do |booking| %>
-        <div class="col-md-4">
-          <div class="card h-100">
-            <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
-            <div class="card-body">
-              <h5 class="card-title"><%= booking.space.name %></h5>
-              <p class="card-text">
-                <%= booking.start_date.strftime("%d %b %Y") %> – <%= booking.end_date.strftime("%d %b %Y") %>
-              </p>
-              <span class="status-badge status-<%= booking.status %>"><%= booking.status %></span>
+    <% if @bookings.any? %>
+      <div class="row g-4">
+        <% @bookings.each do |booking| %>
+          <div class="col-md-4">
+            <div class="card h-100">
+              <%= cl_image_tag booking.space.photo.key, class: "card-img-top" %>
+              <div class="card-body">
+                <h5 class="card-title"><%= booking.space.name %></h5>
+                <p class="card-text"><i class="fas fa-map-marker-alt me-1"></i><%= booking.space.location %></p>
+                <p class="card-text"><%= booking.start_date.strftime("%d %b") %> – <%= booking.end_date.strftime("%d %b %Y") %></p>
+                <span class="status-badge status-<%= booking.status %>"><%= booking.status %></span>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="empty-state">
+        <i class="fas fa-calendar-alt empty-icon"></i>
+        <h3>No bookings yet</h3>
+        <p>Browse spaces and make your first booking.</p>
+        <%= link_to "Browse spaces", root_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
   <% end %>
 </div>

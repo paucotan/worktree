@@ -1,7 +1,7 @@
 .navbar-main {
   background: #fff;
   border-bottom: 1px solid $border;
-  padding: 0 0;
+  padding: 0.75rem 0;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -10,9 +10,36 @@
     padding: 0 2rem;
   }
 
-  .navbar-brand img {
-    height: 36px;
-    width: auto;
+  .navbar-brand {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    text-decoration: none;
+
+    img {
+      height: 32px;
+      width: auto;
+      display: block;
+    }
+  }
+
+  .navbar-wordmark {
+    font-family: $headers-font;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: $primary;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    padding-bottom: 2px;
+  }
+
+  .navbar-nav {
+    align-items: center;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
   }
 
   .nav-link {
@@ -20,8 +47,9 @@
     font-size: 0.875rem;
     font-weight: 500;
     letter-spacing: 0.01em;
-    padding: 0.5rem 1rem !important;
+    padding: 0.4rem 0.85rem !important;
     transition: color 0.2s;
+    line-height: 1.5;
 
     &:hover { color: $accent !important; }
 
@@ -34,14 +62,15 @@
   .nav-btn {
     font-size: 0.875rem;
     font-weight: 500;
-    padding: 0.45rem 1.1rem;
+    padding: 0.4rem 1rem;
     border-radius: 8px;
     border: 1.5px solid $primary;
     color: $primary;
     background: transparent;
     text-decoration: none;
     transition: all 0.2s;
-    margin-left: 0.5rem;
+    line-height: 1.5;
+    white-space: nowrap;
 
     &:hover {
       background: $primary;

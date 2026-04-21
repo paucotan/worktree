@@ -13,7 +13,8 @@
       <nav class="navbar navbar-expand-lg navbar-main">
         <div class="container-fluid">
           <a class="navbar-brand" href="<%= root_path %>">
-            <%= image_tag "worktree_logo.png", alt: "Worktree", height: "36" %>
+            <%= image_tag "worktree_logo.png", alt: "Worktree", height: "32" %>
+            <span class="navbar-wordmark">Worktree</span>
           </a>
 
           <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -67,7 +68,10 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <div class="footer-brand">
-          <%= image_tag "worktree_logo.png", alt: "Worktree", height: "28" %>
+          <div class="footer-brand-logo">
+            <%= image_tag "worktree_logo.png", alt: "Worktree", height: "28" %>
+            <span class="footer-wordmark">Worktree</span>
+          </div>
           <p>Find and book coworking spaces that work for you.</p>
         </div>
         <div class="footer-links">
